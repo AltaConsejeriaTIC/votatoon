@@ -1,0 +1,21 @@
+html,body {
+  height:100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: $azul_5;
+  background-image: url("/static/img/Textura.png");
+  display: table;
+}
+
+footer {
+  width: 100%;
+  background: rgba(25, 173, 228, 0.1);
+  position: relative;
+  margin-top: 132px; /* negative value of footer height */
+  height: 100px;
+  clear:both;
+  padding-top:10px;
+}
