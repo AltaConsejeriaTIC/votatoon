@@ -117,3 +117,5 @@ DS_Store
 backend/build/contracts/
 backend/node_modules
 frontend/node_modules
+
+frontend/package-lock.json
