@@ -1,4 +1,4 @@
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.17;
 
 contract School {
   enum Nomination {
@@ -37,12 +37,12 @@ contract School {
     schoolAdded(_schoolName);
   }
 
-  function getSchool(address _account) public view returns (bytes, uint, uint) {
+  function getSchool(address _account) public constant returns (bytes, uint, uint) {
     SchoolData memory school = schools[_account];
     return (school.schoolName, school.startDateBallot, school.endDateBallot);
   }
 
-  function isElectionOpen(address _account) public view returns (bool _result) {
+  function isElectionOpen(address _account) public constant returns (bool _result) {
     SchoolData memory school = schools[_account];
     _result = false;
     if (school.startDateBallot <= now && now <= school.endDateBallot)
@@ -75,7 +75,7 @@ contract School {
     }
   }
 
-  function getCandidate(address _account, bytes32 _id) public view returns (bytes32, bytes32, uint8, string, bytes, uint8) {
+  function getCandidate(address _account, bytes32 _id) public constant returns (bytes32, bytes32, uint8, string, bytes, uint8) {
     Candidate memory c = schools[_account].candidates[_id];
     return (c.fname, c.lname, c.votes, getNomination(c.nomination), c.photoUrl, c.position);
   }
@@ -108,12 +108,12 @@ contract School {
     }
   }
 
-  function getTotalCandidates(address _account) public view returns (uint256) {
+  function getTotalCandidates(address _account) public constant returns (uint256) {
     bytes32[] memory ids = schools[_account].candidatesId;
     return ids.length;
   }
 
-  function getTotalCandidatesByNomination(address _account, bytes32 _nomination) public view returns (uint256 total) {
+  function getTotalCandidatesByNomination(address _account, bytes32 _nomination) public constant returns (uint256 total) {
     bytes32[] memory ids = schools[_account].candidatesId;
     for(uint8 i = 0; i < ids.length; i++) {
       Candidate memory candidate = schools[_account].candidates[ids[i]];
@@ -123,7 +123,7 @@ contract School {
     }
   }
 
-  function getCandidateByIndex(address _account, uint8 index) public view returns (bytes32, bytes32, bytes32, uint8, string, bytes, uint8) {
+  function getCandidateByIndex(address _account, uint8 index) public constant returns (bytes32, bytes32, bytes32, uint8, string, bytes, uint8) {
     bytes32[] memory ids = schools[_account].candidatesId;
     Candidate memory c;
     bytes32 id;
@@ -143,11 +143,11 @@ contract School {
     schools[_account].voters[_id][getNominationCode(c.nomination)] = now;
   }
 
-  function hasVoted(address _account, bytes32 _id, bytes32 _nomination) public view returns (uint) {
+  function hasVoted(address _account, bytes32 _id, bytes32 _nomination) public constant returns (uint) {
     return schools[_account].voters[_id][getNominationCode(setNomination(_nomination))];
   }
 
-  function getWinner(address _account, bytes32 _nomination) public view returns(bytes32, bytes32, bytes32, uint8, string, bytes, uint8) {
+  function getWinner(address _account, bytes32 _nomination) public constant returns(bytes32, bytes32, bytes32, uint8, string, bytes, uint8) {
     bytes32[] memory ids = schools[_account].candidatesId;
     Candidate memory c;
     bytes32 id;
