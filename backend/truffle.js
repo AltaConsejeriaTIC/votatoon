@@ -20,5 +20,10 @@ module.exports = {
       gas: 4700036,
       from: "0x001844F2742718E9dB34859B8007340eb2aC8880"
     }
+  },
+  compilers: {
+    solc: {
+        version: "0.4.23"
+    }
   }
 }
