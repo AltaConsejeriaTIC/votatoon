@@ -12,7 +12,6 @@ const emptySchool = () => {
     isUnderElection: false
   }
 }
-
 const state = {
   school: emptySchool(),
   schools: [],
@@ -163,7 +162,7 @@ const mutations = {
     }
   },
   [constants.SCHOOL_SET_SCHOOL]: (state, school) => { state.school = Object.assign({}, emptySchool(), state.schools[school]) },
-  [constants.SCHOOL_SET_CANDIDATES]: (state, candidates) => { state.candidates = candidates },
+  [constants.SCHOOL_SET_CANDIDATES]: (state, candidates) => { state.candidates = Object.assign({},[], state.candidates = candidates) },
   [constants.SCHOOL_SET_CANDIDATE]: (state, candidate) => { state.candidate = candidate },
   [constants.SCHOOL_SET_VOTERS]: (state, voters) => { state.voters = voters },
   [constants.SCHOOL_SET_ELECTION_STATUS]: (state, status) => { state.school.isUnderElection = status },
