@@ -1,5 +1,18 @@
+const HDWalletProvider = require("truffle-hdwallet-provider");
+
+require('dotenv').config();
+
 module.exports = {
   networks: {
+    develop: {
+        accounts: 5,
+        defaultEtherBalance: 500,
+        blockTime: 3,
+        provider: function() {
+            return new HDWalletProvider(process.env.MNEMONIC, "http://127.0.0.1:9545");
+        },
+        network_id: "*", // Match any network id
+    },
     development: {
       host: "127.0.0.1",
       port: 8545,
@@ -7,11 +20,10 @@ module.exports = {
       gas: 6721975
     },
     ropsten: {
-      host: "127.0.0.1",
-      port: 7545,
-      network_id: "3",
-      gas: 4700036,
-      from: "0x0099F7aa13A19AdEBa921AF4aEee7b46aaC72Dda"
+      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY),
+      network_id: 3,
+      gas: 3000000,
+      gasPrice: 10000000000
     },
     test: {
       host: "127.0.0.1",
