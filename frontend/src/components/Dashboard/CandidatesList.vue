@@ -12,7 +12,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(candidate, id) in candidates">
+          <tr v-for="(candidate, id) in candidates" v-if="candidate !== undefined">
             <th scope="row">{{ id }}</th>
             <td>{{ candidate.fname }} {{ candidate.lname }}</td>
             <td>
