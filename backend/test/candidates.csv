@@ -1,9 +1,9 @@
-code,fname,lname,id,proposal,nomination
-1,Joaquin,Toquica,123456789,Voy a construir un muro,procurator
-2,Genaro,Gonzalez,234567891,Voy a poner baños,observer
-3,Tatiana,Ramirez,345678912,Voy a poner puestos,comptroller
-4,Lizeth,Rodriguez,456789123,Voy a PaZaR el curso,comptroller
-5,Tarcisio,Torres,567891234,Me voy a cambiar el nombre,observer
-6,Donald,Trump,895647895,Test,procurator
-7,Hugh,Hefner,365128974,dulces para todos,procurator
-8,Barack,Obama,678912345,mas deporte,procurator
+code,fname,lname,id,proposal,nomination,position
+1,Joaquin,Toquica,1,Voy a construir un muro,procurator,1
+2,Genaro,Gonzalez,2,Voy a poner baños,observer,2
+3,Tatiana,Ramirez,3,Voy a poner puestos,comptroller,3
+4,Lizeth,Rodriguez,4,Voy a PaZaR el curso,comptroller,4
+5,Tarcisio,Torres,5,Me voy a cambiar el nombre,observer,5
+6,Donald,Trump,6,Test,procurator,6
+7,Hugh,Hefner,7,dulces para todos,procurator,7
+8,Barack,Obama,8,mas deporte,procurator,8
