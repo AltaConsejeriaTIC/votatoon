@@ -3,9 +3,9 @@ require('dotenv').config();
 module.exports = {
   environment: process.env.APP_ENV,
   blockchainNode: {
-    production: "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY,
-    test: "http://127.0.0.1:7545",
-    development: "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY
+    production: process.env.BLOCKCHAIN_NODE_PRODUCTION,
+    test: process.env.BLOCKCHAIN_NODE_TEST,
+    development: process.env.BLOCKCHAIN_NODE_DEVELOPMENT
   },
   mainAddress: {
     production: process.env.CONTRACT_MAIN_ADDRESS_PRODUCTION,
