@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="route === 'Partial'">
-      <div v-for="candidate in school.candidates">
+      <div v-for="candidate in school.candidates" v-if="candidate !== undefined">
         <h3>{{ candidate.fname }} {{ candidate.lname }}</h3>
         <strong>Votos:</strong> {{ candidate.votes }} <br/>
         <strong>Cargo:</strong> {{ candidate.nomination }}
