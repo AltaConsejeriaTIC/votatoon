@@ -4,7 +4,7 @@ require('dotenv').config();
 
 module.exports = {
   networks: {
-    develop: {
+    truffle_develop: {
         accounts: 5,
         defaultEtherBalance: 500,
         blockTime: 3,
@@ -13,24 +13,28 @@ module.exports = {
         },
         network_id: "*", // Match any network id
     },
-    development: {
+    local_develop: {
       host: "127.0.0.1",
       port: 8545,
       network_id: "*", // Match any network id
       gas: 6721975
     },
-    ropsten: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY),
-      network_id: 3,
+    infura_mainnet: {
+          provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY),
+          network_id: 3,
+          gas: 3000000,
+          gasPrice: 10000000000
+    },
+    infura_ropsten: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY),
+      network_id: "*",
       gas: 3000000,
       gasPrice: 10000000000
     },
-    test: {
-      host: "127.0.0.1",
-      port: 7545,
-      network_id: "3",
+    ganache_test: {
+        provider: () => new HDWalletProvider(process.env.MNEMONIC, "http://127.0.0.1:7545"),
+      network_id: "*",
       gas: 4700036,
-      from: "0x001844F2742718E9dB34859B8007340eb2aC8880"
     }
   },
   compilers: {

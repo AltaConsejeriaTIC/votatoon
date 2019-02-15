@@ -1,14 +1,16 @@
+require('dotenv').config();
+
 module.exports = {
-  environment: "development",
+  environment: process.env.APP_ENV,
   blockchainNode: {
-    production: "http://ropsten.vivelabbogota.com:7545",
+    production: "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY,
     test: "http://127.0.0.1:7545",
-    development: "http://127.0.0.1:8545"
+    development: "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY
   },
   mainAddress: {
-    production: "0x0099F7aa13A19AdEBa921AF4aEee7b46aaC72Dda",
-    test: "0x001844F2742718E9dB34859B8007340eb2aC8880",
-    development: "" // Change for first account in ganache-cli
+    production: process.env.CONTRACT_MAIN_ADDRESS_PRODUCTION,
+    test: process.env.CONTRACT_MAIN_ADDRESS_TEST,
+    development: process.env.CONTRACT_MAIN_ADDRESS_DEVELOPMENT
   },
   httpPort: 3000,
   httpsPort: 3001
