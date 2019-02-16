@@ -15,6 +15,7 @@ import CandidateEdit from '@/components/Dashboard/CandidateForm'
 import Ballot from '@/components/Home/Ballot'
 import ResultVote from '@/components/Home/ResultVote'
 import Partial from '@/components/Home/Partial.vue'
+import Winner from '@/components/Home/Winner.vue'
 
 import AdminLogin from '@/components/Home/Login'
 
@@ -36,7 +37,7 @@ export default new Router({
     { path: '/adminlogin', name: 'AdminLogin', component: AdminLogin },
     { path: '/resultvote', name: 'ResultVote', component: ResultVote },
     { path: '/partial'   , name: 'Partial'   , component: Partial }   ,
-    { path: '/results'   , name: 'Results'   , component: Partial }   ,
+    { path: '/results'   , name: 'Results'   , component: Winner }   ,
     {
       path: '/schools',
       component: Schools,
