@@ -31,7 +31,9 @@ const actions = {
       })
   },
   [constants.BALLOT_VOTE]: ({commit}, data) => {
-    const { idVoter, idCandidate, account, schoolId } = data
+    const { idVoter, nomination, idCandidate, account, schoolId } = data
+    let Voterid = idVoter
+    let election_type = `has_voted_${nomination}`
     const headers = {
       address: account
     }
@@ -43,6 +45,11 @@ const actions = {
         else candidate['votes'] = 1
         const updates = {}
         updates[`school/${ schoolId }/candidates/${ idCandidate }`] = candidate
+        debugger;
+        firebase.database().ref(`school/${ schoolId }/voters/${ Voterid }`).set({
+          [`${election_type}`]: true,
+        });
+
         firebase.database().ref().update(updates)
       })
     .catch(console.error)
