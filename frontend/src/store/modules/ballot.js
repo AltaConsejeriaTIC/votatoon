@@ -37,6 +37,16 @@ const actions = {
     const headers = {
       address: account
     }
+
+    firebase.database().ref(`school/${ schoolId }/voters/${ Voterid }`).once('value')
+    .then(snapshot => {
+      let actual_voter =  snapshot.val()
+      const updates_voter = {}
+      updates_voter[`school/${ schoolId }/voters/${ Voterid }/${election_type}`] = true
+      console.log(actual_voter);
+      firebase.database().ref().update(updates_voter)
+    })
+
     firebase.database().ref(`school/${ schoolId }/candidates/${ idCandidate }`).once('value')
       .then(snapshot => {
         const candidate = snapshot.val()
@@ -45,11 +55,6 @@ const actions = {
         else candidate['votes'] = 1
         const updates = {}
         updates[`school/${ schoolId }/candidates/${ idCandidate }`] = candidate
-        debugger;
-        firebase.database().ref(`school/${ schoolId }/voters/${ Voterid }`).set({
-          [`${election_type}`]: true,
-        });
-
         firebase.database().ref().update(updates)
       })
     .catch(console.error)
