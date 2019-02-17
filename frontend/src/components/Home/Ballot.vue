@@ -91,7 +91,6 @@ export default {
           this.$refs[data.id][0].className = 'candidate-card'
         })
         this.selectCandidates.forEach((data) => {
-        debugger;
           this.doVote({idVoter: this.voter.id, idCandidate: data.id, nomination:data.nomination, account: this.school.account, schoolId: this.getSchoolId()})
         })
         this.setVoter({})
