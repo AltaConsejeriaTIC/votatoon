@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>Votaciones {{ name }}</h1>
-    <h2>Votación representante estudiantil {{ new Date().getFullYear() }}</h2>
+    <h2>Votación personero estudiantil {{ new Date().getFullYear() }}</h2>
   </header>
 </template>
 
