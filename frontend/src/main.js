@@ -12,8 +12,8 @@ import { config } from './firebase'
 sync(store, router)
 Vue.use(VueAxios, axios)
 
-const local = `http://localhost:3000/`
-const production = `https://votacion.vivelabbogota.com/api`
+const local = `http://138.68.254.20:3000`
+const production = `http://138.68.254.20:3000`
 
 switch(process.env.NODE_ENV) {
   case 'development':
