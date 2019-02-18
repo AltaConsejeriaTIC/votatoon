@@ -2,7 +2,7 @@
   <div id="ballot" class="carousel slide" data-ride="carousel" data-interval="5000000" data-pause="hover"
        data-wrap="false">
     <div class="carousel-inner" role="listbox">
-      <div class="carousel-item" :class="defineSlideClass(i)" v-for="nomination, i in nominations">
+      <div  v-if="!voter[`has_voted_${nomination}`]" class="carousel-item" :class="defineSlideClass(i)" v-for="nomination, i in nominations">
         <div class="row">
           <div class="col-md-4"></div>
           <div class="col-md-4">
