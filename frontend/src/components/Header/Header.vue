@@ -2,10 +2,6 @@
   <header>
     <h1>Votaciones {{ name }}</h1>
     <h2>Votación personero estudiantil {{ new Date().getFullYear() }}</h2>
-    <h4>Colegio de educación Distrital el Rodeo</h4>
-    <h4>Localidad San Cristobal</h4>
-
-
   </header>
 </template>
 
