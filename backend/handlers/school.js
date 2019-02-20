@@ -4,7 +4,7 @@ const Web3Utils      = require('web3-utils');
 const SchoolContract = require('../build/contracts/School.json');
 const config         = require('../config/config');
 const tool           = require('../tools');
-
+require('dotenv').config();
 module.exports = {
   contract: null,
   instance: null,
@@ -12,11 +12,11 @@ module.exports = {
   _error: null,
 
   init: function (address, web3) {
+
     let self = this;
     return new Promise(function (resolve, reject) {
       let mainAddress = self.selectAddress(address, web3);
       console.log('Main address: ', self.selectAddress(mainAddress, web3));
-      self.doAccountUnlocked(mainAddress, web3);
       self.contract = contract(SchoolContract);
       let gasPrice = (BigNumber(web3.eth.gasPrice).toNumber())*100;
       console.log('Gas Price: ', web3.fromWei(gasPrice, 'ether'));
@@ -28,6 +28,7 @@ module.exports = {
       self.contract.setProvider(web3.currentProvider);
       let balance = web3.eth.getBalance(mainAddress);
       console.log('Balance: ', web3.fromWei(balance.toNumber(), 'ether')); // 1000000000000
+
       self.contract.deployed()
         .then(function (instance) {
           self.instance = instance;
@@ -42,11 +43,15 @@ module.exports = {
   addSchool: function (address, data) {
     let self = this;
     return new Promise(function (resolve, reject) {
+      console.log('Tansacción enviada. Esperando respuesta.')
       self.instance.addSchool(address, tool.encrypted(data.name), data.start, data.end, {from: address})
         .then(function (tx) {
+          console.log(new Date(), 'Tansacción confirmada');
+          console.log(tx)
           resolve(tx);
         })
         .catch(function (error) {
+          console.log('Transacción con error')
           console.error(error);
           reject(error);
         });
@@ -77,6 +82,7 @@ module.exports = {
     return new Promise( function (resolve, reject) {
       self.instance.getCandidate(address, data.id)
         .then(function (candidate) {
+          console.log(candidate)
           let result = false;
           if (Web3Utils.hexToString(candidate[0]) !== '') {
             result = true;
@@ -259,23 +265,17 @@ module.exports = {
     });
   },
 
-  doAccountUnlocked: function (address, web3) {
-    if (config.environment !== "development") {
-      this.isLockAccount(address, web3)
-        .then(function (sign) {
-          return sign;
-        })
-        .catch(function () {
-          web3.personal.unlockAccount(address, 'vivelab281013', '0x15180',
-            function (error, result) {
-              if (!error) {
-                console.log('Result Unlock Account: ', result);
-              } else if (error) {
-                console.error('Error Unlock Account: ', error);
-              }
-            });
-        });
-    }
+  doAccountUnlocked: function (address, web3, callback) {
+    console.log('Desbloqueando: '+ address)
+    web3.personal.unlockAccount(address, process.env.WALLET_PASSWORD, 0x10,
+      function (error, result) {
+        if (!error) {
+          console.log('Result Unlock Account: ', result);
+          callback();
+        } else if (error) {
+          console.error('Error Unlock Account: ', error);
+        }
+      });
   },
 
   getTransactionsByAccount: function (web3, myaccount, startBlockNumber = null, endBlockNumber = null) {
@@ -337,13 +337,7 @@ module.exports = {
   },
 
   selectAddress: function (address, web3) {
-    let currentAddress;
-    if (config.environment === "development") {
-      currentAddress = web3.eth.accounts[0];
-    } else {
-      currentAddress = address;
-    }
-    return currentAddress;
+    return address;
   }
 
 };

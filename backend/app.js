@@ -93,15 +93,19 @@ app.post('/addSchool', function (req, res) {
   const data = req.body;
   const schoolAddress = req.header('address');
   School.init(mainAddress, web3);
-  School.doAccountUnlocked(schoolAddress, web3);
-  console.log(new Date(), '/addSchool School address: ', schoolAddress);
-  School.addSchool(schoolAddress, data)
-    .then(function (tx) {
-      res.json(tx);
-    })
-    .catch(function (error) {
-      res.json(error);
-    });
+  School.doAccountUnlocked(schoolAddress, web3, function(){
+    console.log(new Date(), '/addSchool School address: ', schoolAddress);
+    School.addSchool(schoolAddress, data)
+      .then(function (tx) {
+        console.log(tx);
+        res.json(tx);
+      })
+      .catch(function (error) {
+        console.log(error)
+        res.json(error);
+      });
+  });
+
 });
 
 /*
@@ -143,15 +147,19 @@ app.post('/addCandidate', function (req, res) {
   const data = req.body;
   const schoolAddress = req.header('address');
   School.init(mainAddress, web3);
-  School.doAccountUnlocked(schoolAddress, web3);
-  console.log(new Date(), '/addCandidate School address: ', schoolAddress);
-  School.addCandidate(schoolAddress, data)
-    .then(function (tx) {
-      res.json(tx);
-    })
-    .catch(function (error) {
-      res.json(error);
-    });
+  School.doAccountUnlocked(schoolAddress, web3, function(){
+    console.log(new Date(), '/addCandidate School address: ', schoolAddress);
+    School.addCandidate(schoolAddress, data)
+      .then(function (tx) {
+        console.log(tx)
+        res.json(tx);
+      })
+      .catch(function (error) {
+        console.log(error)
+        res.json(error);
+      });
+
+  });
 });
 
 
@@ -212,15 +220,17 @@ app.post('/vote', function (req, res) {
   const data = req.body;
   const schoolAddress = req.header('address');
   School.init(mainAddress, web3);
-  School.doAccountUnlocked(schoolAddress, web3);
-  console.log(new Date(), '/vote School address: ', schoolAddress);
-  School.doVote(schoolAddress, data)
-    .then(function (tx) {
-      res.json(tx);
-    })
-    .catch(function (error) {
-      res.json(error);
-    });
+  School.doAccountUnlocked(schoolAddress, web3, function(){
+    console.log(new Date(), '/vote School address: ', schoolAddress);
+    School.doVote(schoolAddress, data)
+      .then(function (tx) {
+        res.json(tx);
+      })
+      .catch(function (error) {
+        res.json(error);
+      });
+
+  });
 });
 
 /*
