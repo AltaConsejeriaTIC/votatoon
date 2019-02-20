@@ -30,6 +30,10 @@ module.exports = {
       gas: 3000000,
       gasPrice: 10000000000
     },
+    infura_rinkeby: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://rinkeby.infura.io/v3/" + process.env.INFURA_API_KEY),
+      network_id: "*",
+    },
     ganache_test: {
         provider: () => new HDWalletProvider(process.env.MNEMONIC, "http://127.0.0.1:7545"),
       network_id: "*",
