@@ -16,7 +16,7 @@
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0",
     "chartkick": "^2.2.4",
-    "firebase": "^4.9.0",
+    "firebase": "^4.13.1",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "papaparse": "^4.3.7",

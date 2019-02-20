@@ -14,10 +14,9 @@ module.exports = {
         network_id: "*", // Match any network id
     },
     local_develop: {
-      host: "127.0.0.1",
-      port: 8545,
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, "http://127.0.0.1:8545"),
+      network_id: 3,
       network_id: "*", // Match any network id
-      gas: 6721975
     },
     infura_mainnet: {
           provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY),
@@ -26,7 +25,7 @@ module.exports = {
           gasPrice: 10000000000
     },
     infura_ropsten: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, "https://ropsten.infura.io/v3/" + process.env.INFURA_API_KEY),
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, process.env.BLOCKCHAIN_NODE_PRODUCTION),
       network_id: "*",
       gas: 3000000,
       gasPrice: 10000000000
