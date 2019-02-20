@@ -1,6 +1,12 @@
 <template>
   <div id="ballot" class="carousel slide" data-ride="carousel" data-interval="5000000" data-pause="hover"
        data-wrap="false">
+       <div class="text-center" >
+
+       <div class="button button-width-ballot" :class="clean" style="margin:0 auto">
+         <button class="btn" type="button" @click="clean()">LIMPIAR TARJETON</button>
+       </div>
+       </div>
     <div class="carousel-inner" role="listbox">
       <div  v-if="!voter[`has_voted_${nomination}`]" class="carousel-item" :class="defineSlideClass(i)" v-for="nomination, i in nominations">
         <div class="row">
@@ -85,6 +91,10 @@ export default {
     ...mapGetters({
       getSchoolId: constants.SCHOOL_GET_ACTIVE
     }),
+    clean(){
+    location.reload();
+
+    },
     vote () {
       if (this.selectCandidates.length === this.nominations.length) {
         this.candidates.forEach((data) => {
