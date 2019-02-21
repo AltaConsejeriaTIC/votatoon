@@ -4,7 +4,7 @@
        <div class="text-center" >
 
        <div class="button button-width-ballot" :class="clean" style="margin:0 auto">
-         <button class="btn" type="button" @click="clean()">LIMPIAR TARJETON</button>
+       <button style="font-size:12pt" class="btn" type="button" @click="clean()">LIMPIAR TARJETON</button>
        </div>
        </div>
     <div class="carousel-inner" role="listbox">
